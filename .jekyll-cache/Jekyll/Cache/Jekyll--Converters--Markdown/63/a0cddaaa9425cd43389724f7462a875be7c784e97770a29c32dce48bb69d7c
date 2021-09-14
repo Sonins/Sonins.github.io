@@ -1,0 +1,8 @@
+I"�<h2 id="github-블로그">Github 블로그</h2>
+<p>깃헙 블로그는 처음 써보는지라 사람들이 하라는대로 <a href="https://jekyllrb.com/">jekyll</a>을 써서 블로그를 만들었다.<br />
+마크다운 형식은 좀 써봤지만 아직 덜 익숙한 것 같다. 그래도 확실히 익숙해지면 작업 속도는 빠를듯.</p>
+
+<h2 id="airflow-discord-bot-operator">Airflow Discord bot operator</h2>
+<p>내가 계획하고 있는 <a href="https://github.com/Sonins/SKKU-Notification-Bot-Dag">성대 공지사항 봇</a>에 Airflow를 쓰기로 했다. 별 이유가 있었던건 아니고 그냥 산학프로젝트때 써봤는데 괜찮아 보여서였다.</p>
+
+:ET

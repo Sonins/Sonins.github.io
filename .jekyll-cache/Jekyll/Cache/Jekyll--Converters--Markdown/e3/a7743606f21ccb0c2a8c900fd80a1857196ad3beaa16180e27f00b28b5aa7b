@@ -1,0 +1,15 @@
+I"<h2 id="github-블로그">Github 블로그</h2>
+<p>깃헙 블로그는 처음 써보는지라 사람들이 하라는대로 <a href="https://jekyllrb.com/">jekyll</a>을 써서 블로그를 만들었다.<br />
+마크다운 형식은 좀 써봤지만 아직 덜 익숙한 것 같다. 그래도 확실히 익숙해지면 작업 속도는 빠를듯.</p>
+
+<h2 id="skku-notification-bot">SKKU Notification bot</h2>
+<p><a href="https://github.com/Sonins/SKKU-Notification-Bot-Dag">공지사항 봇</a>의 DAG는 대충 틀이 잡혔다.<br />
+기본적으로 slack이나 discord에 메시지 쏴주는 것 까지 기능 구현이 다 되었다. 이제 세부사항을 좀 더 디벨롭 시켜야한다.</p>
+
+<p>예를 들어.. 지금 DAG의 주기는 1일인데 이걸 1시간 이내로 줄일 계획이다. 아무래도 공지사항 알람을 받는 사람들은 봇이 실시간으로 공지사항이 올라올 때 마다 알람을 쏴주길 바랄테니까..<br />
+문제는 이 기능을 위해서 DB와의 연동은 피할 수 없을 것 같다.</p>
+
+<h2 id="airflow-discord-bot-operator">Airflow Discord bot operator</h2>
+<p>내가 만들고 있는 <a href="https://github.com/Sonins/SKKU-Notification-Bot-Dag">성대 공지사항 봇</a>은 기본적으로 Airflow DAG를 기반으로 한다.</p>
+
+:ET
