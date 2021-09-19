@@ -1,0 +1,15 @@
+---
+layout: post
+title:  "9월 19일 개발로그"
+categories: dev-log Airflow Raspberry-Pi
+---
+## Airflow on Raspberry PI
+주문한 라즈베리파이가 와서 Ubuntu server로 세팅을 끝냈다. 근데 두 가지 문제가 생겼다.
+1. 내 생각보다 쿨러가 시끄럽다.
+2. 라즈베리파이는 arm64 아키텍처인데, Airflow 도커 이미지가 amd 아키텍처 밖에 지원을 안한다. 나는 몰랐는데 이미지랑 호스트의 아키텍처가 다르면 컨테이너가 올라가지 않는다.
+
+1번의 경우 5V 쿨러를 3.3V에 연결하니까 쿨링 속도는 줄었는데 소리는 전혀 나지 않았다. 문제는 2번이다. 도커로 띄우지 못하면 로컬에서 Airflow를 실행시켜야 한다. 어차피 Postgres나 Redis의 경우 arm을 지원하는것 같아서 이거 두 개만 도커로 띄워놓았다. Airflow 환경만 로컬에 세팅하면 되는데, 근데 그 세팅과정이 정말 어마어마하게 고통스러웠다. Dependency 문제 해결이 특히. DAG 모듈 문제도 발생해서 plugins 경로를 여기 저기로 바꾸고 webserver랑 scheduler도 몇 번을 띄웠다가 내렸다가 한 것 같다. 역시 처음해보는거는 공식 문서를 읽어보자.
+
+그래도 어찌어찌해서 airflow webserver, scheduler, worker를 systemd로 서비스화 하는데 성공했다. 이 세팅방법을 블로그에 정리해서 올려놓아야겠다. Airflow는 executor 등등 여러가지 설정할 것이 많기 때문이다.
+
+시행착오를 거쳤지만 그래도 라즈베리 파이에 이식하는데 성공해서 기분이 좋다. 발열도 쿨러가 원래보다는 느리게 돌지만 잘 잡히고 있는 것 같고.
