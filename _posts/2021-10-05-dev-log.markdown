@@ -1,0 +1,86 @@
+---
+layout: post
+title:  "10월 5일 개발로그"
+categories: dev-log SKKU Discord-bot Airflow
+---
+## SKKU Notification bot
+DAG 파일이 점점 거대해져서 쪼개고 싶었는데, 결국 그렇게 했다. TaskGroup을 이용해서 디스코드 메시지 구성 부분이랑 전송 부분을 하나로 묶고, 파이썬 함수로 반환하게 했다. 지금은 task_group/discord_notify.py에 해당 부분을 작성했다.  
+```python
+def discord_post_notify(
+    http_conn_id: str,
+    post: Union[str, Iterable[Dict]],
+    dag: DAG,
+    channel: str = "",
+    date: Optional[str] = None,
+    **kwargs,
+) -> TaskGroup:
+    """
+    Notify new post to Discord using DiscordBotOperator.
+    Build message using PythonOpreator first and send it.
+    """
+    discord_post_notify_task_group = TaskGroup(group_id="discord_post_notify", dag=dag)
+
+    discordBuildMessageOperator = PythonOperator(
+        task_id="discord_build_message",
+        task_group=discord_post_notify_task_group,
+        python_callable=build_discord_noti,
+        op_kwargs={"date": date, "post": post},
+        provide_context=True,
+        do_xcom_push=True,
+        dag=dag,
+    )
+
+    discordSendNotificationOperator = DiscordBotOperator(
+        task_id="discord_send_message",
+        task_group=discord_post_notify_task_group,
+        http_conn_id=http_conn_id,
+        json="{{ ti.xcom_pull(task_ids='discord_post_notify.discord_build_message') }}",
+        channel=channel,
+        dag=dag,
+    )
+
+    discordBuildMessageOperator >> discordSendNotificationOperator
+    return discord_post_notify_task_group
+```
+
+`post`를 받아서 디스코드 메시지 형식에 맞춰 메시지를 구성한 다음, `channel`에 전송해주는 `TaskGroup`을 함수화 한 것이다. 이를 다음과 같이 사용한다.
+
+```python
+discordNotifyTaskGroup = discord_post_notify(
+    http_conn_id="discord_noti_bot",
+    date="{{ ds }}",
+    post="{{ ti.xcom_pull(task_ids='parse_response') }}",
+    dag=dag,
+)
+...
+postExistsOperator >> discordNotifyTaskGroup
+```
+문제는 `post` 부분인데, jinja 템플릿을 쓰면 결과를 str로 형변환 하는건지, `post`가 `List[Dict]`가 아니라 `str` 형식으로 함수에 넘겨지는 것이다. json 문자열처럼 `{"property": "value"}` 이렇게 큰 따옴표로 구성되는 것도 아니고 `{'property': 'value'}` 이런식으로 문자열이 넘어가는데, 저렇게 작은 따옴표로 구성된 문자열을 `json.loads()`로 받게 되면 다음과 같은 오류가 생긴다.
+```log
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+```
+그래서 `json.loads()` 대신 `literal_eval()`을 썼다.
+```python
+def build_discord_noti(date: str, post: Union[str, Iterable[Dict]], **context) -> str:
+    """
+    디스코드의 메시지 양식에 맞추어 Json 형태의 메시지를 만들어 주는 함수입니다.
+    Embed 오브젝트를 사용합니다. 각 포스트 하나당 Embed 오브젝트 하나를 사용합니다.
+    (https://discord.com/developers/docs/resources/channel#create-message)
+
+    :type post: Union[str, Iterable[Dict]]
+    :param post: The post you want to notificate.
+                 It should be json string or iterable object of Dict.
+                 It should contains property 'title' and 'link'.
+    """
+    if isinstance(post, str):
+        d = literal_eval(post) # instead of json.loads(post)
+        if isinstance(d, Iterable):
+            post = d
+        elif isinstance(d, Dict):
+            post = [d]
+
+    return _build_message_helper(date, post)
+```
+그냥 `eval()`을 썼어도 됐지만, 보안 신경 쓸거라면 `literal_eval()`을 써야한다고 한다.
+
+jinja template의 경우 진짜로 변수를 str로 형변환해서 계산하는건지 메커니즘은을 볼 필요가 있을 것 같다.
