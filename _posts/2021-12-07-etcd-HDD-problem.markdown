@@ -3,22 +3,6 @@ layout: post
 title:  "Etcd health check 문제"
 categories: Kubernetes Troubleshooting etcd
 ---
-<!--
-소개
- - 어떤 주제인가?
-
-증상
- - 어떤 장애가 일어났는가?
- - 눈에 띄는 로그가 무엇이 있는가?
-
-원인
- - Etcd가 SSD/HDD/Nvme 중에 어디에 설치되어야 하는가?
- - health check가 Etcd io 속도에 어떤 영향을 받나?
-
-해결 방법
- - 드라이브를 바꿀 수 있다면 해결책은 어떤게 있는가?
- - 바꿀 수 없다면 해결책은 어떤게 있는가?
--->
 ## etcd
 etcd는 Go 언어 기반 분산 시스템 키-값 저장소이다. Kubernetes는 etcd에 작업 스케줄링과 서비스 검색을 위한 클러스터 설정값을 저장한다.
 Kubernetes의 kube-apiserver는 etcd가 살아있는지 주기적으로 health check을 날린다. etcd가 죽거나 문제가 생기면 health check가 실패하고, 그러면 kube-apiserver 또한 꺼지게 된다.
@@ -117,3 +101,20 @@ The timeout to use when checking etcd health.
 물론 그냥 OS를 다 밀고 SSD에 모든걸 다시 설치하는 방법도 있다.
 ### 실제로 해결한 방법
 healthcheck timeout을 두 배로 늘리는 것이다. `/etc/kubernetes/manifest`에는 etcd 뿐만 아니라 kube-apiserver의 스펙도 기술되어 있다. 파일 이름은 `/etc/kubernetes/manifest/kube-apiserver.yaml`이다. 이 방법의 경우 더 간단한데, `/etc/kubernetes/manifest/kube-apiserver.yaml`에 있는 `--etcd-healthcheck-duration` 옵션을 2초에서 4초로 늘려주면, kubernetes가 수정을 감지하고 자동으로 kube-apiserver를 수정된 스펙에 맞게 재실행한다. 내 기억으로는 `--etcd-healthcheck-duration` 옵션이 기본으로는 없었고 새로 추가해줘야 했던 것으로 기억한다. `--etcd-healthcheck-duration=4s`가 되겠다.
+
+<!--
+소개
+ - 어떤 주제인가?
+
+증상
+ - 어떤 장애가 일어났는가?
+ - 눈에 띄는 로그가 무엇이 있는가?
+
+원인
+ - Etcd가 SSD/HDD/Nvme 중에 어디에 설치되어야 하는가?
+ - health check가 Etcd io 속도에 어떤 영향을 받나?
+
+해결 방법
+ - 드라이브를 바꿀 수 있다면 해결책은 어떤게 있는가?
+ - 바꿀 수 없다면 해결책은 어떤게 있는가?
+-->
