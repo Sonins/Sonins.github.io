@@ -9,6 +9,8 @@ Airflow는 Apache 오픈 소스 그룹에서 관리하는 대형 오픈소스 �
 Airflow는 Metadata DB에 Airflow의 설정, 연결, 그리고 DAG 실행 결과등 여러가지 Airflow의 메타데이터를 저장한다. Metadata DB로 Postgresql이나 Mysql 같은 관계형 데이터베이스를 사용한다.
 Airflow는 Python으로 작성되었다. 따라서 Metadata DB를 어떻게 조작하는지 보면, 앞으로 Python에서 데이터베이스를 조작할 때 참고가 될 수 있을 것 같아 이렇게 정리해둔다.
 
+---
+
 ## ORM
 Airflow는 Metadata DB를 sqlalchemy를 통해서 조작한다. sqlalchemy는 데이터베이스 내 객체와 파이썬 객체를 연결하는 ORM(Object Relational Mapping)을 사용한다. 쉽게 말하자면, ORM으로 정의된 파이썬 객체 하나는 데이터베이스 테이블 내 row 하나와 연결된다. 간단한 ORM 예를 살펴보면,
 ```python
@@ -136,6 +138,8 @@ def provide_session(func: Callable[..., RT]) -> Callable[..., RT]:
 `create_session()` 함수에서 트랜잭션 커밋과 롤백, 그리고 세션 종료 조건까지 한꺼번에 정의한다. `@contextlib.contextmanager` 데코레이터를 통해 이 함수는 이제 `with` 구문으로 접근 할 수 있다.
 `with` 구문이 종료 될 때, 아직 커밋되지 않은 트랜잭션은 문제가 없으면 세션에 커밋하고, 그렇지 않으면 모두 롤백된다. 두 경우 모두 세션은 종료된다.  
 `provide_session()`는 `with create_session() as session`을 통해 session을 생성한다. 그리고 이 session을 데이터베이스를 조작하는 함수의 session 파라미터로 전달한다. 데이터베이스에 접근하는 함수들은 `@provide_session` 데코레이터로 session에 데이터베이스 연결 세션을 받을 수 있다. 함수가 종료되고 `provide_session()` 내 with 구문을 벗어나면, 커밋 혹은 롤백 한 뒤 세션은 종료될 것이다.  
+
+---
 
 ## 스키마 관리
 Airflow는 alembic으로 Metadata DB 스키마를 관리한다. 
