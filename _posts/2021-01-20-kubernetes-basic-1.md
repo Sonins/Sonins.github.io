@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Kubernetes Basic 1 - Kubernetes 조작 방법"
+title: "Kubernetes Basic 1 : Kubernetes 조작 방법"
 categories: Kubernetes
 ---
 # Intro
