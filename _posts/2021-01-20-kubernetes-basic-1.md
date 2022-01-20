@@ -25,17 +25,11 @@ Kubernetes는 기본적으로 `~/.kube/config` 파일을 참조하여 클러스�
 ![kubeconfig](./assets/kubeconfig.png)  
 [이미지 출처](https://freedeveloper.tistory.com/425)
 
-### aws-iam-authenticator
 
-Vatech은 `aws-iam-authenticator` 라는 인증 툴로 인증 절차를 추가적으로 실행합니다. 따라서, `aws-iam-authenticator`를 설치하고, `~/.aws/credentials`에 인증 정보를 추가해줘야 합니다.
 
-- 설치 방법 : [aws-iam-autheticator installation](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/install-aws-iam-authenticator.html)
+### 클러스터 여러 개 조작
 
-### 인증 파일
-
-대부분의 경우 클러스터는 이미 구성되어 있을 것이고, 따라서 `~/.kube/config`이나 `~/.aws/credentials` 같은 인증 파일은 사수분들에게 받으면 됩니다. 그렇게 되면 사내에 이미 구성된 클러스터를 사용할 수 있습니다.
-
-만약 다른 클러스터 (e.g. 본인이 직접 구성한 클러스터)를 추가로 사용하고 싶다면 `~/.kube/config`내 `clusters`, `contexts`, `users` 항목에 각각 알맞은 값을 추가해 주면 됩니다.([참고](https://kubernetes.io/ko/docs/tasks/access-application-cluster/configure-access-multiple-clusters/))  
+클러스터를 추가로 사용하고 싶다면 `~/.kube/config`내 `clusters`, `contexts`, `users` 항목에 각각 알맞은 값을 추가해 주면 됩니다.([참고](https://kubernetes.io/ko/docs/tasks/access-application-cluster/configure-access-multiple-clusters/))  
 이후 current-context를 사용하고 싶은 클러스터의 context로 바꾸면 됩니다. current-context를 바꾸는 방법은 [kubectl config](###kubectl-config)의 `use-context`에 소개되어 있습니다. 위 이미지 예의 경우, 다음과 같은 명령어로 current-context를 선택합니다.
 
 ```bash
