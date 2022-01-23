@@ -18,7 +18,7 @@ Kubernetes Basic 포스트 시리즈는 Kubernetes/Infra에서 필요한 가장 
 
 ### Kubespray/Ansible
 
-![Kubespray](./assets/kubespray.svg)
+![Kubespray](./assets/images/kubespray.svg)
 
 Kubeadm, Kops등 Kubernetes 클러스터를 구성하는 여러 방법이 있지만 Kubespray/Ansible playbook을 사용해서도 베어메탈 서버에 Kubernetes를 설치할 수 있습니다.
 
@@ -33,7 +33,7 @@ DNS, 컴포넌트 런타임 옵션등 여러가지를 선택할 수 있지만 �
 
 ### Kind
 
-![kind](./assets/kind.png)
+![kind](./assets/images/kind.png)
 
 프로덕션 환경에서 Kubernetes를 설치하는 것도 중요하지만, 로컬 환경(대부분의 경우 본인의 랩탑/맥북일 것입니다.)에서 테스트, 혹은 학습을 위해 로컬 머신을 이용한 단일 클러스터/혹은 여러 가상머신으로 이루어진 클러스터를 구성하는 방법도 필요합니다. 이 경우 선택할 수 있는 좋은 솔루션 중에 Kind가 있습니다.  
 
@@ -74,7 +74,7 @@ kind create cluster --config kind-example-config.yaml
 CNI는 Container Network Interface의 줄임말입니다. CNI plugin 또한 시중에 여러가지 플러그인이 나와있지만, Cilium과 Metallb를 조합해서 사용할 수 있습니다. 자세한 개념은 복잡하므로, 많은 세부사항이 생략되었습니다. 이러한 솔루션을 사용하고 있음만 소개해드리려 합니다.
 
 ### Cilium
-![cilium](./assets/cilium.png)  
+![cilium](./assets/images/cilium.png)  
 [Finda 기술블로그](https://medium.com/finda-tech/kubernetes-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%A0%95%EB%A6%AC-fccd4fd0ae6)에 소개된 것 처럼, Kubernetes는 기본으로 Routing에 Iptable을 사용합니다. Cilium에서 사용하는 방식은 ebpf/xdp입니다. ebpf/xdp는 iptable을 대체할 커널 기술로 많이 주목을 받고 있습니다.
 
 간단히 말해서 기존 Iptables/Netfilter에서 가지는 성능 한계를 ebpf/xdp에서는 해결하고 있습니다. [참고](https://cilium.io/blog/2018/04/17/why-is-the-kernel-community-replacing-iptables)
@@ -95,7 +95,7 @@ Metallb는 Baremetal 클러스터에서 작동하는 로드밸런서 솔루션�
 
 ### OpenEBS
 
-![OpenEBS](./assets/OpenEBS.png)
+![OpenEBS](./assets/images/OpenEBS.png)
 
 Persistent Volume을 간단하게 생성하고 또 관리할 수 있는 스토리지 솔루션입니다. Mayastor, cStor, Jiva같은 분산 Replicated Persistent Volume 엔진도 지원하고 있지만, 제일 간단하게 사용할 수 있는 방법은 바로 [Local Provisioner를 이용한 로컬 볼륨](https://openebs.io/docs#local-volumes)입니다. 이를 이용해서 어플리케이션이 배포된 노드의 로컬에 볼륨을 생성해 레이턴시가 거의 없이 볼륨에 접근할 수 있도록 만듭니다.
 
@@ -105,12 +105,12 @@ Persistent Volume을 간단하게 생성하고 또 관리할 수 있는 스토�
 
 ## Service Mesh
 
-![Complicated Service mesh](./assets/servicemeshcasestudies.png)
+![Complicated Service mesh](./assets/images/servicemeshcasestudies.png)
 
 Service mesh는 Kubernetes 클러스터를 구성하는 Microservice간 통신을 담당합니다. 기존 Kubernetes의 기능들로도 Pod간 통신을 관리하는 것이 가능하지만, 문제는 Microservice의 숫자가 많아지면서 서비스가 복잡해지면 복잡해질수록 Kubernetes의 기존 기능으로는 관리하기가 힘들어집니다. Service mesh는 그런점을 보완하기 위해 나타난 솔루션입니다. Service Mesh로 Microservice간 네트워크 모니터링, Fault injection, Load balancing등을 수행할 수 있습니다.
 
 ### Istio
 
-![Istio](./assets/Istio.png)
+![Istio](./assets/images/Istio.png)
 
 Istio는 Service mesh 및 Ingress/Engress를 지원하는 통합 솔루션입니다. Istio는 Service mesh의 일반적인 아키텍처로 채택되는 Sidecar 구성에서 Sidecar로 Envoy proxy를 injection 합니다. 또한, Grafana와 kiali등의 추가적인 도구로 Dashboard를 구성할 수 있습니다.

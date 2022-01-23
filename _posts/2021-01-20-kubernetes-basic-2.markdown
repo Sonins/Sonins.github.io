@@ -10,7 +10,7 @@ categories: Kubernetes
 
 ## Pod
 
-![Pod](./assets/module_03_pods.svg)
+![Pod](./assets/images/module_03_pods.svg)
 Kubernetes의 가장 기본적인 워크로드입니다. Application이 Pod 형태로 Kubernetes 클러스터에 배포됩니다. Pod는 다음과 같은 특징들을 가집니다.
 
 - Pod는 하나 이상의 컨테이너로 구성되어 있습니다.
@@ -41,11 +41,11 @@ spec:
 
 ## Service
 
-![Pod temp IP](./assets/podiptemp.png)
+![Pod temp IP](./assets/images/podiptemp.png)
 
 Pod의 IP는 영구적이지 않고 재시작할 때마다 바뀌므로, IP를 기반으로 Pod에 접근하면 연결을 오래 유지할 수 없습니다.
 
-![service](./assets/service.png)
+![service](./assets/images/service.png)
 
 이러한 문제를 해결하기 위해, Kubernetes는 IP에 상관없이 특정 Pod에 접근할 수 있도록 도메인 네임 주소를 제공하는 Service라는 객체를 제공합니다. 이 Service는 Pod 하나에만 접합하는 건 아니고, Pod 집합에 접합할 수도 있습니다. 이 경우 Service는 접합된 여러 개의 Pod 중 하나만을 선택해서 연결합니다.
 
