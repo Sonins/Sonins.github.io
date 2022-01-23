@@ -9,7 +9,7 @@ show_excerpts: true # set to true to show excerpts on the homepage
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
 sass:
   sass_dir: _sass
-plainwhite:
+jekyll-text-theme:
   name: Heegwan Son
   tagline: 백수(진)
   date_format: "%b %-d, %Y"
@@ -51,7 +51,7 @@ plainwhite:
 # - about.md
 
 # Build settings
-theme: plainwhite
+theme: jekyll-text-theme
 
 plugins:
   - jekyll-seo-tag
