@@ -27,7 +27,7 @@ Percona MongoDB Operator의 문제점은 커뮤니티의 크기가 많이 작다
 
 #### MongoDB Community/Enterprise Kubernetes Operator
 
-![MongoDB](https://camo.githubusercontent.com/0806fae66e28fd4ce9baf881d083ed47cdff1a3b401fe0a8a21652d6fa9a33cb/68747470733a2f2f6d6f6e676f64622d6b756265726e657465732d6f70657261746f722e73332e616d617a6f6e6177732e636f6d2f696d672f4c6561662d466f7265737425343032782e706e67)
+![MongoDB](https://camo.githubusercontent.com/0806fae66e28fd4ce9baf881d083ed47cdff1a3b401fe0a8a21652d6fa9a33cb/68747470733a2f2f6d6f6e676f64622d6b756265726e657465732d6f70657261746f722e73332e616d617a6f6e6177732e636f6d2f696d672f4c6561662d466f7265737425343032782e706e67){: .center}
 
 - [MongoDB Community Operator 깃헙](https://github.com/mongodb/mongodb-kubernetes-operator)
 - [MongoDB Enterprise Operator 깃헙](https://github.com/mongodb/mongodb-enterprise-kubernetes)
