@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Kubernetes Basic 2-1 : Statefulset vs Deployment"
 categories: Kubernetes
 ---

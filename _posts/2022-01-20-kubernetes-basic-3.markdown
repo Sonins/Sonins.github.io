@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Kubernetes Basic 3 : Application Operator"
 categories: Kubernetes
 ---
@@ -17,7 +16,7 @@ MongoDB Operator 종류입니다.
 
 #### Percona MongoDB Operator
 
-![Percona MongoDB](../assets/images/pmdb.png)
+![Percona MongoDB]({{ site.baseurl }}/assets/images/pmdb.png)
 
 - [Percona MongoDB Operator 공식 홈페이지](https://www.percona.com/doc/kubernetes-operator-for-psmongodb/index.html)
 - [깃헙](https://github.com/percona/percona-server-mongodb-operator)
@@ -55,7 +54,7 @@ Elasticsearch Operator 종류입니다.
 
 #### ECK (Elastic cloud on Kubernetes)
 
-![ECK](../assets/images/elastic-logo.svg)
+![ECK]({{ site.baseurl }}/assets/images/elastic-logo.svg)
 
 - [ECK Quickstart](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html)
 
@@ -67,7 +66,7 @@ Mysql Operator 종류입니다.
 
 #### Percona XtraDB
 
-![Xtradb-logo](../assets/images/kubernetes-xtradb-logo.png)
+![Xtradb-logo]({{ site.baseurl }}/assets/images/kubernetes-xtradb-logo.png)
 
 - [Percona XtraDB Operator 공식 홈페이지](https://www.percona.com/doc/kubernetes-operator-for-pxc/index.html)
 

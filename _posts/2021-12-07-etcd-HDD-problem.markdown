@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Etcd health check 문제"
 categories: Kubernetes Troubleshooting etcd
 ---

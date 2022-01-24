@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "9월 15일 개발로그"
 categories: dev-log SKKU Discord-bot Airflow ETC
 ---

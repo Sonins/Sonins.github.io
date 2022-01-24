@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Kubernetes Basic 4 : Troubleshooting"
 categories: Kubernetes
 ---

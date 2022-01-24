@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Kubernetes Basic 1 : Kubernetes 조작 방법"
 categories: Kubernetes
 ---
@@ -16,7 +15,7 @@ Kubernetes 클러스터가 구성된 상태에서, Kubernetes를 조작하기 �
 
 Kubernetes는 기본적으로 `~/.kube/config` 파일을 참조하여 클러스터를 조작합니다. 따라서, 클러스터를 조작할 로컬 환경(대부분의 경우 노트북이나 맥북이 될 것입니다.)내 다음과 같은 `~/.kube/config` 파일이 있어야 합니다.
 
-![kubeconfig](../assets/images/kubeconfig.png)  
+![kubeconfig]({{ site.baseurl }}/assets/images/kubeconfig.png)  
 [이미지 출처](https://freedeveloper.tistory.com/425)
 
 

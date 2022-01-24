@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "9월 14일, 현재 까지 개발로그"
 categories: dev-log SKKU Discord-bot Airflow blog
 ---
