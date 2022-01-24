@@ -4,7 +4,7 @@ title:  "Airflow가 Metadata DB를 사용하는 방법"
 categories: Airflow Database Sqlalchemy alembic
 ---
 ## Airflow
-![Airflow](https://raw.githubusercontent.com/Sonins/Sonins.github.io/main/_post./assets/images/1200px-AirflowLogo.png)  
+![Airflow](https://raw.githubusercontent.com/Sonins/Sonins.github.io/main/_post../assets/images/1200px-AirflowLogo.png)  
 Airflow는 Apache 오픈 소스 그룹에서 관리하는 대형 오픈소스 프로젝트이다. Airflow는 작업 스케줄링 도구로, 주기적인 작업의 일정을 정의하고 그 실행 결과를 모니터링 해준다.
 Airflow는 Metadata DB에 Airflow의 설정, 연결, 그리고 DAG 실행 결과등 여러가지 Airflow의 메타데이터를 저장한다. Metadata DB로 Postgresql이나 Mysql 같은 관계형 데이터베이스를 사용한다.
 Airflow는 Python으로 작성되었다. 따라서 Metadata DB를 어떻게 조작하는지 보면, 앞으로 Python에서 데이터베이스를 조작할 때 참고가 될 수 있을 것 같아 이렇게 정리해둔다.
