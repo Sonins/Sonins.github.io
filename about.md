@@ -26,11 +26,14 @@ titles:
 key: page-about
 ---
 
-# About me
-
-![me]({{ site.baseurl }}/assets/me.jpg)
-
 제가 아는 기술들을 저장해놓는 방주입니다.
 
-- Cirriculum vitae  
-TODO
+# About me
+
+![me]({{ site.baseurl }}/assets/me.jpg){: width="50%" height="50%" .center}
+
+
+
+- <h3>I've been through</h3>
+  - <b>성균관대학교 컴퓨터공학과</b>  
+  [2016.03 - 2022.08 (Expected)]
